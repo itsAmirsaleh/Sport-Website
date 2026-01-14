@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Amir",
+      "email": "Amirsalar@gmail.com",
+      "password": "Amirsalar1386",
+      "role": "Admin",
+      "goal": "Weight Loss",
+      "date": "03/01/2026 21:30:50",
+      "ip": "::ffff:127.0.0.1"
+    },
+    {
+      "id": 2,
+      "name": "Hamid",
+      "email": "Hamid@gmail.com",
+      "password": "Hamid1344",
+      "role": "Coach",
+      "goal": "General",
+      "date": "03/01/2026 21:38:06",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 3,
+      "name": "Aran JS",
+      "email": "AranJohnson@gmail.com",
+      "password": "Aran123456",
+      "role": "Member",
+      "goal": "Weight Loss",
+      "date": "04/01/2026 18:08:37",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": 4,
+      "name": "Kimia",
+      "email": "kimia@gmail.com",
+      "password": "Kimia1388",
+      "role": "Member",
+      "goal": "Weight Loss",
+      "date": "04/01/2026 19:49:27",
+      "ip": "127.0.0.1"
+    }
+  ],
+  "classes": [
+    {
+      "id": 1,
+      "title": "CrossFit Elite",
+      "coach": "Hamid",
+      "time": "Mon, Wed (18:00)"
+    },
+    {
+      "id": 2,
+      "title": "Yoga Flow",
+      "coach": "Sarah J.",
+      "time": "Tue, Thu (07:00)"
+    }
+  ],
+  "equipment": [
+    {
+      "id": 1,
+      "name": "Treadmill X5",
+      "date": "2025-12-28",
+      "statusClass": "bg-ok",
+      "statusText": "Operational"
+    },
+    {
+      "id": 2,
+      "name": "Cable Machine",
+      "date": "2026-01-10",
+      "statusClass": "bg-repair",
+      "statusText": "Needs Attention"
+    }
+  ],
+  "login": [],
+  "register": [],
+  "update-role": [],
+  "index": [
+    {
+      "id": 1,
+      "section": "banner",
+      "content": "Welcome to IronForged Gym"
+    }
+  ]
+}

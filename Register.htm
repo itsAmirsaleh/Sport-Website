@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Elite | Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #D92027;
+            --primary-hover: #b91116;
+            --dark: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --error: #ff4d4d;
+            --success: #2ecc71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-main);
+            padding: 20px;
+        }
+
+        .signup-container {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border-bottom: 4px solid var(--primary);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .header span {
+            color: var(--primary);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: #252525;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #2a2a2a;
+        }
+
+        .error-msg {
+            color: var(--error);
+            font-size: 0.7rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .btn-signup {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: var(--primary-hover);
+        }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .download-db {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            background: transparent;
+            border: 1px dashed #444;
+            color: #666;
+            padding: 10px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-container">
+        <div class="header">
+            <h1>JOIN THE <span>LEGACY</span></h1>
+            <p>Create your athlete profile today</p>
+        </div>
+
+        <form id="signupForm">
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label>Full Name</label>
+                    <input type="text" id="fullname" placeholder="John Doe" required>
+                    <div id="nameError" class="error-msg">Please enter your name.</div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="john@example.com" required>
+                    <div id="emailError" class="error-msg">This email is already registered.</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Min 8 chars" required>
+                    <div id="passError" class="error-msg">Password must be at least 8 characters.</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Repeat password" required>
+                    <div id="confirmError" class="error-msg">Passwords do not match.</div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Primary Fitness Goal</label>
+                    <select id="goal">
+                        <option value="Muscle Building">Muscle Building</option>
+                        <option value="Weight Loss">Weight Loss</option>
+                        <option value="Endurance">Endurance Training</option>
+                        <option value="General">General Fitness</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-signup">CREATE ACCOUNT</button>
+        </form>
+
+        <div class="footer-link">
+            Already a member? <a href="login.htm">Login here</a>
+        </div>
+
+        <button class="download-db" onclick="downloadUsersTxt()">Download Users List (Backup TXT)</button>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById('signupForm');
+
+        signupForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            document.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+
+            const name = document.getElementById('fullname').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const goal = document.getElementById('goal').value;
+
+            let hasError = false;
+
+            if (name === "") {
+                document.getElementById('nameError').style.display = 'block';
+                hasError = true;
+            }
+
+            if (password.length < 8) {
+                document.getElementById('passError').style.display = 'block';
+                hasError = true;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmError').style.display = 'block';
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            const userData = { name, email, password, goal };
+
+            fetch('http://localhost:3000/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            })
+                .then(async res => {
+                    const msg = await res.text();
+                    if (res.ok) {
+                        alert("Account created and saved to users.txt!");
+                        window.location.href = "login.htm";
+                    } else {
+                        if (msg.includes("email")) {
+                            document.getElementById('emailError').style.display = 'block';
+                        } else {
+                            alert(msg);
+                        }
+                    }
+                })
+                .catch(() => alert("Error: Make sure server.js is running!"));
+        });
+    </script>
+</body>
+
+</html>

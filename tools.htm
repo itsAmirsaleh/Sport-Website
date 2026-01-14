@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tools | IronForged</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D92027;
+            --dark: #121212;
+            --card: #1e1e1e;
+            --text: #f4f4f4;
+            --muted: #aaaaaa;
+            --success: #28a745;
+            --warning: #ffc107;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        header {
+            padding: 20px 5%;
+            background: #000;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 { font-size: 1.5rem; letter-spacing: 1px; color: white; text-decoration: none; }
+        .logo span { color: var(--primary); }
+        .logo a { text-decoration: none; color: inherit; }
+
+        .auth-actions { display: flex; align-items: center; gap: 15px; }
+
+        .user-chip {
+            background: #222;
+            border: 1px solid var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .user-chip:hover { background: var(--primary); }
+
+        .btn-header {
+            color: white; font-weight: bold; text-decoration: none; font-size: 0.9rem;
+        }
+        .btn-header.register {
+            background: var(--primary); padding: 5px 15px; border-radius: 4px;
+        }
+
+        .tools-hero {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1517963879466-e1b54ebd5914?q=80&w=2069');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .tools-hero h2 { font-size: 3rem; margin-bottom: 10px; }
+        .tools-hero p { color: var(--muted); }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .tool-card {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+        .tool-card:hover { transform: translateY(-5px); }
+
+        .tool-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        .tool-icon { font-size: 2rem; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #aaa; font-size: 0.85rem; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: white; border-radius: 5px; font-size: 1rem;
+        }
+        .form-group input:focus, .form-group select:focus { border-color: var(--primary); outline: none; }
+
+        .btn-calc {
+            width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 5px;
+            font-family: 'Oswald'; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px;
+        }
+        .btn-calc:hover { background: #b0151b; }
+
+        .result-box {
+            background: #252525;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            display: none; 
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .result-value { font-size: 2.5rem; font-family: 'Oswald'; color: white; line-height: 1; margin: 10px 0; }
+        .result-label { font-size: 0.9rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+        .status-badge { display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-top: 5px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer {
+            background: #080808;
+            padding: 4rem 10% 2rem;
+            border-top: 3px solid var(--primary);
+            margin-top: auto;
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 30px; }
+        .footer-col h3 { color: var(--primary); margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; color: var(--muted); font-size: 0.9rem; }
+        .footer-bottom { border-top: 1px solid #222; padding-top: 2rem; color: #555; text-align: center; font-size: 0.8rem; }
+
+        .bg-normal { background: var(--success); color: black; }
+        .bg-warning { background: var(--warning); color: black; }
+        .bg-danger { background: var(--primary); color: white; }
+
+        @media(max-width: 768px) { .container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.htm"><h1>IRON<span>FORGED</span></h1></a>
+        </div>
+        
+        <div class="auth-actions" id="headerAuth">
+            <a href="index.htm" style="color:#aaa; text-decoration:none;">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="tools-hero">
+        <h2>FITNESS <span>CALCULATORS</span></h2>
+        <p>Analyze your body metrics to optimize your training.</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="tool-card">
+            <div class="tool-header">
+                <span class="tool-icon">⚖️</span>
+                <h3>BMI Calculator</h3>
+            </div>
+            <form id="bmiForm">
+                <div class="form-group">
+                    <label>Weight (kg)</label>
+                    <input type="number" id="weight" placeholder="e.g. 75" required>
+                </div>
+                <div class="form-group">
+                    <label>Height (cm)</label>
+                    <input type="number" id="height" placeholder="e.g. 180" required>
+                </div>
+                <button type="submit" class="btn-calc">CALCULATE BMI</button>
+            </form>
+
+            <div id="bmiResult" class="result-box">
+                <div class="result-label">Your BMI Score</div>
+                <div class="result-value" id="bmiValue">0.0</div>
+                <div id="bmiStatus" class="status-badge bg-normal">Normal</div>
+                <p style="margin-top: 10px; font-size: 0.85rem; color: #888;" id="bmiAdvice"></p>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-header">
+                <span class="tool-icon">🔥</span>
+                <h3>Daily Calories</h3>
+            </div>
+            <form id="calorieForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="calAge" placeholder="25" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Weight (kg)</label>
+                        <input type="number" id="calWeight" placeholder="75" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Activity Level</label>
+                    <select id="calActivity">
+                        <option value="1.2">Sedentary (Office Job)</option>
+                        <option value="1.375">Light Exercise (1-2 days/week)</option>
+                        <option value="1.55">Moderate (3-5 days/week)</option>
+                        <option value="1.725">Heavy (6-7 days/week)</option>
+                        <option value="1.9">Athlete (2x per day)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-calc">CALCULATE NEEDS</button>
+            </form>
+
+            <div id="calResult" class="result-box">
+                <div class="result-label">Maintenance Calories</div>
+                <div class="result-value" id="calValue">0</div>
+                <div style="display: flex; justify-content: space-between; margin-top: 15px; border-top: 1px solid #444; padding-top: 10px;">
+                    <div style="text-align: center;">
+                        <span style="display:block; font-size:0.8rem; color:#aaa;">To Lose</span>
+                        <span style="color:var(--warning); font-weight:bold;" id="calLose">0</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="display:block; font-size:0.8rem; color:#aaa;">To Gain</span>
+                        <span style="color:var(--success); font-weight:bold;" id="calGain">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>IRONFORGED</h3>
+                <p>The gold standard in gym management.</p>
+            </div>
+            <div class="footer-col">
+                <h3>QUICK LINKS</h3>
+                <ul>
+                    <li><a href="index.htm" style="color:#aaa; text-decoration:none;">Home</a></li>
+                    <li><a href="membership.htm" style="color:#aaa; text-decoration:none;">Membership</a></li>
+                    <li><a href="guide.htm" style="color:#aaa; text-decoration:none;">Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>CONTACT</h3>
+                <ul>
+                    <li>support@ironforged.com</li>
+                    <li>+1 (555) 000-1234</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 IRONFORGED INDUSTRIES. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerAuth = document.getElementById('headerAuth');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userRaw = localStorage.getItem('currentUser');
+
+            if (isLoggedIn && userRaw) {
+                const user = JSON.parse(userRaw);
+                let dashboardLink = 'dashboard.htm';
+                
+                if(user.role === 'Admin') dashboardLink = 'admin-panel.htm';
+                else if(user.role === 'Coach') dashboardLink = 'coach-dashboard.htm';
+
+                headerAuth.innerHTML = `
+                    <a href="${dashboardLink}" class="user-chip">
+                        <span>👤</span> ${user.name} (${user.role || 'Member'})
+                    </a>
+                    <a href="javascript:void(0)" onclick="logout()" style="color:#aaa; font-size:0.8rem; text-decoration:none;">Logout</a>
+                `;
+            } else {
+                headerAuth.innerHTML = `
+                    <a href="Login.htm" class="btn-header">Login</a>
+                    <a href="Register.htm" class="btn-header register">Register</a>
+                `;
+            }
+        });
+
+        function logout() {
+            if(confirm('Log out?')) {
+                localStorage.clear();
+                window.location.reload();
+            }
+        }
+
+        document.getElementById('bmiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert to M
+            
+            if(weight && height) {
+                const bmi = (weight / (height * height)).toFixed(1);
+                const bmiBox = document.getElementById('bmiResult');
+                const valEl = document.getElementById('bmiValue');
+                const statusEl = document.getElementById('bmiStatus');
+                const adviceEl = document.getElementById('bmiAdvice');
+
+                bmiBox.style.display = 'block';
+                valEl.innerText = bmi;
+
+                if(bmi < 18.5) {
+                    statusEl.innerText = "Underweight";
+                    statusEl.className = "status-badge bg-warning";
+                    adviceEl.innerText = "Focus on calorie surplus and strength training.";
+                } else if(bmi < 24.9) {
+                    statusEl.innerText = "Healthy Weight";
+                    statusEl.className = "status-badge bg-normal";
+                    adviceEl.innerText = "Great job! Maintain your routine.";
+                } else if(bmi < 29.9) {
+                    statusEl.innerText = "Overweight";
+                    statusEl.className = "status-badge bg-warning";
+                    adviceEl.innerText = "Incorporate more cardio and monitor diet.";
+                } else {
+                    statusEl.innerText = "Obese";
+                    statusEl.className = "status-badge bg-danger";
+                    adviceEl.innerText = "Please consult a fitness professional.";
+                }
+            }
+        });
+
+        document.getElementById('calorieForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const age = parseFloat(document.getElementById('calAge').value);
+            const weight = parseFloat(document.getElementById('calWeight').value);
+            const factor = parseFloat(document.getElementById('calActivity').value);
+            
+            if(age && weight) {
+                const bmr = (10 * weight) + (6.25 * 170) - (5 * age) + 5; 
+                const tdee = Math.round(bmr * factor);
+
+                document.getElementById('calResult').style.display = 'block';
+                document.getElementById('calValue').innerText = tdee + " kcal";
+                document.getElementById('calLose').innerText = (tdee - 500) + " kcal";
+                document.getElementById('calGain').innerText = (tdee + 500) + " kcal";
+            }
+        });
+    </script>
+</body>
+</html>

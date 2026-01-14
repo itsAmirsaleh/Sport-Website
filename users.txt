@@ -1,0 +1,6 @@
+ID    | NAME            | EMAIL                     | PASSWORD             | GOAL                 | DATE   &    Time | IP ADDRESS            | ًRole
+------------------------------------------------------------------------------------------------------------------------------------------------
+1     | Amir           | Amirsalar@gmail.com      | Amirsalar1386       | Weight Loss         | 03/01/2026 21:30:50  | ::ffff:127.0.0.1| Admin
+2     | Hamid          | Hamid@gmail.com          | Hamid1344           | General             | 03/01/2026 21:38:06  | 127.0.0.1      | Coach
+3     | Aran JS        | AranJohnson@gmail.com    | Aran123456          | Weight Loss         | 04/01/2026 18:08:37  | 127.0.0.1        | Member
+4     | Kimia          | kimia@gmail.com          | Kimia1388           | Weight Loss         | 04/01/2026 19:49:27  | 127.0.0.1      | Member

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Portal | IronForged Gym</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #D92027;
+            --secondary: #1a73e8;
+            --dark-bg: #0f0f0f;
+            --card-bg: #1e1e1e;
+            --text: #f4f4f4;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text);
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #000;
+            padding: 30px 20px;
+            position: fixed;
+            border-right: 1px solid #333;
+        }
+
+        .sidebar h2 {
+            font-family: 'Oswald';
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .nav-link {
+            color: #888;
+            text-decoration: none;
+            display: block;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            background: #222;
+            color: #fff;
+            border-left: 4px solid var(--primary);
+        }
+
+        .container {
+            margin-left: 250px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .card h3 {
+            font-family: 'Oswald';
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th {
+            text-align: left;
+            color: #666;
+            font-size: 0.8rem;
+            padding-bottom: 15px;
+        }
+
+        table td {
+            padding: 12px 5px;
+            border-bottom: 1px solid #222;
+            font-size: 0.9rem;
+        }
+
+        .btn-action {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-report {
+            background: var(--success);
+        }
+
+        .report-form input,
+        .report-form select,
+        .report-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .badge {
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            background: #333;
+        }
+
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <h2>COACH <span>PRO</span></h2>
+        <nav>
+            <a href="#" class="nav-link active">👥 Students List</a>
+            <a href="#" class="nav-link">📅 My Schedule</a>
+            <a href="#" class="nav-link">📝 Reports</a>
+            <a href="/index.htm" class="nav-link" style="margin-top: 40px; color: var(--primary);">⬅ Logout</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Coach Dashboard</h1>
+            <div id="date-display">January 2026</div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>My Active Students</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>PLAN</th>
+                            <th>LAST CHECK</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-list">
+                        <tr>
+                            <td>Ali Rezayi</td>
+                            <td>Bulking</td>
+                            <td>2 Days ago</td>
+                            <td><button class="btn-action btn-report" onclick="openReport('Ali Rezayi')">Add
+                                    Report</button></td>
+                        </tr>
+                        <tr>
+                            <td>Sara Ahmadi</td>
+                            <td>Fat Loss</td>
+                            <td>Today</td>
+                            <td><button class="btn-action btn-report" onclick="openReport('Sara Ahmadi')">Add
+                                    Report</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Today's Classes</h3>
+                <div style="margin-bottom: 15px;">
+                    <span class="badge">16:00</span> <strong>Advanced HIIT</strong>
+                    <p style="font-size: 0.8rem; color: #888;">Group A - 12 Students</p>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <span class="badge">18:30</span> <strong>Personal Training</strong>
+                    <p style="font-size: 0.8rem; color: #888;">Client: Ali Rezayi</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Quick Progress Report</h3>
+            <form class="report-form" id="reportForm">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="targetStudent" placeholder="Student Name" readonly>
+                    <select id="performance">
+                        <option value="excellent">Excellent Performance</option>
+                        <option value="good">Good / Improving</option>
+                        <option value="needs-work">Needs more focus</option>
+                    </select>
+                </div>
+                <textarea id="coachNote" rows="3"
+                    placeholder="Write specific notes about today's session (e.g., increased bench press by 5kg)"></textarea>
+                <button type="submit" class="btn-action" style="width: 200px; padding: 12px;">Submit Daily
+                    Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openReport(studentName) {
+            document.getElementById('targetStudent').value = studentName;
+            document.getElementById('coachNote').focus();
+        }
+
+        document.getElementById('reportForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const student = document.getElementById('targetStudent').value;
+            const note = document.getElementById('coachNote').value;
+
+            if (!student) {
+                alert("Please select a student from the list above first!");
+                return;
+            }
+
+            alert(`Success! Report for ${student} has been saved and sent to their dashboard.`);
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

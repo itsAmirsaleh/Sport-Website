@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | IronForged Gym</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #D92027;
+            --primary-hover: #b91116;
+            --dark: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --error: #ff4d4d;
+            --success: #4BB543;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .login-container {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border-top: 4px solid var(--primary);
+            animation: fadeIn 0.6s ease-out;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .login-header h1 span {
+            color: var(--primary);
+        }
+
+        .login-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #252525;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: #2a2a2a;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .btn-login:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-login:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .login-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.htm" class="back-home">← Back to Home</a>
+
+    <div class="login-container">
+        <div class="login-header">
+            <h1>IRON<span>FORGED</span></h1>
+            <p id="statusText">Welcome back, Athlete!</p>
+        </div>
+
+        <form id="loginForm">
+            <div id="inputsContainer">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+            </div>
+
+            <button type="submit" id="loginBtn" class="btn-login">SIGN IN</button>
+        </form>
+
+        <div class="login-footer" id="footerText">
+            Don't have an account? <a href="Register.htm">Create one here</a>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const statusText = document.getElementById('statusText');
+        const loginBtn = document.getElementById('loginBtn');
+        const inputsContainer = document.getElementById('inputsContainer');
+        const footerText = document.getElementById('footerText');
+
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            loginBtn.disabled = true;
+            loginBtn.innerText = "Verifying...";
+
+            fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            })
+                .then(async res => {
+                    const contentType = res.headers.get("content-type");
+                    let data;
+
+                    if (contentType && contentType.includes("application/json")) {
+                        data = await res.json();
+                    } else {
+                        const text = await res.text();
+                        data = { name: text };
+                    }
+
+                    if (res.ok) {
+                        const userName = data.name || data.username || "Athlete";
+                        const userRole = data.role || "Member";
+
+                        localStorage.setItem('isLoggedIn', 'true');
+                        localStorage.setItem('currentUser', JSON.stringify({
+                            name: userName,
+                            email: email,
+                            role: userRole 
+                        }));
+                        statusText.style.color = "var(--success)";
+                        statusText.innerHTML = `
+                <span style="font-size: 1.3rem;">Welcome <b>${userName}</b>!</span><br>
+                <small style="color: #aaa;">Detected Role: ${userRole}</small><br>
+                Redirecting you to the gym in 8 seconds...
+            `;
+                        inputsContainer.style.display = 'none';
+                        loginBtn.style.display = 'none';
+                        footerText.style.visibility = 'hidden';
+                        setTimeout(() => {
+                            window.location.replace("index.htm");
+                        }, 8000);
+
+                    } else {
+                        loginBtn.disabled = false;
+                        loginBtn.innerText = "SIGN IN";
+                        alert(data.message || "Invalid Email or Password!");
+                    }
+                })
+                .catch((err) => {
+                    loginBtn.disabled = false;
+                    loginBtn.innerText = "SIGN IN";
+                    console.error("Server Error:", err);
+                    alert("Connection Error: سرور Node.js در دسترس نیست.");
+                });
+        });
+    </script>
+</body>
+
+</html>

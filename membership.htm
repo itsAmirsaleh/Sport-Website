@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Plans | IronForged</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #D92027; --dark: #121212; --card: #1e1e1e; --text: #f4f4f4; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; background-color: var(--dark); color: var(--text); }
+        h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+        
+        header { padding: 20px 5%; background: #000; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.5rem; letter-spacing: 1px; color: white; text-decoration: none; }
+        .logo span { color: var(--primary); }
+        .logo a { text-decoration: none; color: inherit; }
+        .back-btn { color: #aaa; text-decoration: none; font-size: 0.9rem; }
+        .back-btn:hover { color: white; }
+
+        .hero { text-align: center; padding: 80px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070'); background-size: cover; background-position: center; }
+        .hero h2 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { color: #aaa; max-width: 600px; margin: 0 auto; }
+
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .plan-card {
+            background: var(--card); border-radius: 10px; padding: 40px; text-align: center;
+            border: 1px solid #333; transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .plan-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        
+        .plan-card.popular { border: 2px solid var(--primary); background: #252525; transform: scale(1.05); }
+        .badge { position: absolute; top: 15px; right: -30px; background: var(--primary); width: 100px; transform: rotate(45deg); font-size: 0.7rem; font-weight: bold; padding: 5px 0; }
+
+        .price { font-size: 2.5rem; font-family: 'Oswald'; margin: 20px 0; color: white; }
+        .price span { font-size: 1rem; color: #888; }
+        
+        .features { list-style: none; margin-bottom: 30px; text-align: left; }
+        .features li { padding: 10px 0; border-bottom: 1px solid #333; color: #ccc; }
+        .features li::before { content: '✔'; color: var(--primary); margin-right: 10px; }
+
+        .btn-select { display: block; width: 100%; padding: 15px; background: transparent; border: 2px solid var(--primary); color: white; font-family: 'Oswald'; text-transform: uppercase; cursor: pointer; transition: 0.3s; text-decoration: none; }
+        .plan-card.popular .btn-select, .btn-select:hover { background: var(--primary); }
+
+        .faq-section { margin-top: 80px; }
+        .faq-item { background: #1a1a1a; margin-bottom: 15px; padding: 20px; border-radius: 5px; }
+        .faq-item h4 { margin-bottom: 10px; color: var(--primary); }
+        .faq-item p { font-size: 0.9rem; color: #aaa; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.htm"><h1>IRON<span>FORGED</span></h1></a></div>
+        <div id="headerAuth"></div>
+    </header>
+
+    <div class="hero">
+        <h2>CHOOSE YOUR <span>PATH</span></h2>
+        <p>Invest in yourself. Flexible plans for every fitness level.</p>
+    </div>
+
+    <div class="container">
+        <div class="pricing-grid">
+            <div class="plan-card">
+                <h3>Starter</h3>
+                <div class="price">$29<span>/mo</span></div>
+                <ul class="features">
+                    <li>Gym Access (Off-Peak)</li>
+                    <li>Locker Room Access</li>
+                    <li>1 Free PT Session</li>
+                    <li style="opacity:0.3; text-decoration:line-through;">Group Classes</li>
+                </ul>
+                <a href="Register.htm" class="btn-select">Select Plan</a>
+            </div>
+
+            <div class="plan-card popular">
+                <div class="badge">POPULAR</div>
+                <h3>Pro Athlete</h3>
+                <div class="price">$59<span>/mo</span></div>
+                <ul class="features">
+                    <li>24/7 Gym Access</li>
+                    <li>Access to All Classes</li>
+                    <li>Sauna & Spa</li>
+                    <li>Free Protein Shake/mo</li>
+                </ul>
+                <a href="Register.htm" class="btn-select">Select Plan</a>
+            </div>
+
+            <div class="plan-card">
+                <h3>Iron Elite</h3>
+                <div class="price">$99<span>/mo</span></div>
+                <ul class="features">
+                    <li>All Pro Features</li>
+                    <li>Unlimited PT Sessions</li>
+                    <li>Nutritional Planning</li>
+                    <li>Guest Pass (Bring a friend)</li>
+                </ul>
+                <a href="Register.htm" class="btn-select">Select Plan</a>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 style="text-align: center; margin-bottom: 30px;">FREQUENTLY ASKED QUESTIONS</h2>
+            <div class="faq-item">
+                <h4>Can I freeze my membership?</h4>
+                <p>Yes, you can freeze your membership for up to 3 months per year for medical or travel reasons.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Are classes included?</h4>
+                <p>Classes are included in the Pro and Elite plans. Starter plan members can pay per class.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const userRaw = localStorage.getItem('currentUser');
+        const headerAuth = document.getElementById('headerAuth');
+        
+        if(userRaw) {
+            const user = JSON.parse(userRaw);
+            let link = 'dashboard.htm';
+            if(user.role === 'Admin') link = 'admin-panel.htm';
+            if(user.role === 'Coach') link = 'coach-dashboard.htm';
+            
+            headerAuth.innerHTML = `
+                <div style="display:flex; align-items:center; gap:15px;">
+                    <a href="${link}" style="color:white; text-decoration:none; border:1px solid #D92027; padding:5px 15px; border-radius:20px;">👤 ${user.name}</a>
+                    <a href="index.htm" class="back-btn">Home</a>
+                </div>`;
+        } else {
+            headerAuth.innerHTML = `<a href="Login.htm" style="color:white; font-weight:bold; text-decoration:none; margin-right:15px;">Login</a> <a href="index.htm" class="back-btn">Home</a>`;
+        }
+    </script>
+</body>
+</html>
